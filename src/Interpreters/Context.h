@@ -76,6 +76,7 @@ class BackgroundSchedulePool;
 class MergeList;
 class MovesList;
 class ReplicatedFetchList;
+class RefreshSet;
 class Cluster;
 class Compiler;
 class MarkCache;
@@ -915,6 +916,9 @@ public:
 
     ReplicatedFetchList & getReplicatedFetchList();
     const ReplicatedFetchList & getReplicatedFetchList() const;
+
+    RefreshSet & getRefreshSet();
+    const RefreshSet & getRefreshSet() const;
 
     /// If the current session is expired at the time of the call, synchronously creates and returns a new session with the startNewSession() call.
     /// If no ZooKeeper configured, throws an exception.

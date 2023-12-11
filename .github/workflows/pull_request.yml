@@ -248,6 +248,12 @@ jobs:
     with:
       build_name: binary_amd64_compat
       data: ${{ needs.RunConfig.outputs.data }}
+  BuilderBinAmd64Musl:
+    needs: [RunConfig, FastTest]
+    uses: ./.github/workflows/reusable_build.yml
+    with:
+      build_name: binary_amd64_musl
+      data: ${{ needs.RunConfig.outputs.data }}
   BuilderBinAarch64V80Compat:
     needs: [RunConfig, FastTest]
     if: ${{ !failure() && !cancelled() }}
@@ -327,6 +333,7 @@ jobs:
       - BuilderBinAmd64Compat
       - BuilderBinAarch64V80Compat
       - BuilderBinClangTidy
+      - BuilderBinAmd64Musl
     uses: ./.github/workflows/reusable_test.yml
     with:
       test_name: ClickHouse special build check

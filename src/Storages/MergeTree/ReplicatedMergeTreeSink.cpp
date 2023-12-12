@@ -799,8 +799,6 @@ std::pair<std::vector<String>, bool> ReplicatedMergeTreeSinkImpl<async_insert>::
             }
         }
 
-        LOG_INFO(log, "commit_new_part_stage");
-
         /// Obtain incremental block number and lock it. The lock holds our intention to add the block to the filesystem.
         /// We remove the lock just after renaming the part. In case of exception, block number will be marked as abandoned.
         /// Also, make deduplication check. If a duplicate is detected, no nodes are created.
@@ -832,8 +830,6 @@ std::pair<std::vector<String>, bool> ReplicatedMergeTreeSinkImpl<async_insert>::
         }
 
         auto block_number = block_number_lock->getNumber();
-
-        LOG_INFO(log, "lock_part_number_stage {}", block_number);
 
         /// Set part attributes according to part_number.
         part->info.min_block = block_number;

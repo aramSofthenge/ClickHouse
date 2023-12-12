@@ -158,7 +158,11 @@ unit_check_digest = DigestConfig(
     docker=["clickhouse/unit-test"],
 )
 perf_check_digest = DigestConfig(
-    include_paths=["./tests/ci/performance_comparison_check.py", "./tests/performance"],
+    include_paths=[
+        "./tests/ci/performance_comparison_check.py",
+        "./tests/performance/",
+        "./utils/performance-comparison/",
+    ],
     exclude_files=[".md"],
     docker=["clickhouse/performance-comparison"],
 )
